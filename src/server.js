@@ -122,10 +122,10 @@ app.put('/api.deckProfile.com/Deck', function(req, res) {
 }) 
 
 app.use(favicon(path.join(__dirname, "../favicon.ico")));
-app.use(express.static(path.join(__dirname,'../build')))
+/* app.use(express.static(path.join(__dirname,'../build')))
 app.all('/*', (req, res) => {
   res.status(200).sendFile(path.join(__dirname,'../build','index.html'))
-});
+}); */
 var port = process.env.PORT || 4002
 // starting the server
 app.listen(port, () => {
