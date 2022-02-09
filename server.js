@@ -59,7 +59,7 @@ app.get('/api', function(req, res) {
   }
 }) 
 
-app.get('/api.deckProfile.com/Deck', function(req, res) {   
+app.get('/api/Deck', function(req, res) {   
   try {
     sequelize.authenticate();
     console.log('Connecté à la base de données MySQL!');
@@ -72,7 +72,7 @@ app.get('/api.deckProfile.com/Deck', function(req, res) {
   }
 }) 
 
-app.get('/api.deckProfile.com/Deck/:id', function(req, res) {   
+app.get('/api/Deck/:id', function(req, res) {   
   const id = req.params.id
   try {
     sequelize.authenticate();
@@ -86,7 +86,7 @@ app.get('/api.deckProfile.com/Deck/:id', function(req, res) {
   }
 }) 
 
-app.post('/api.deckProfile.com/Deck', function(req, res) {   
+app.post('/api/Deck', function(req, res) {   
   const name = req.body.name
   const id_customer = req.body.id_customer
   const data_cards = req.body.data_cards
@@ -103,7 +103,7 @@ app.post('/api.deckProfile.com/Deck', function(req, res) {
   }
 }) 
 
-app.put('/api.deckProfile.com/Deck', function(req, res) {   
+app.put('/api/Deck', function(req, res) {   
   const id_deck = req.body.id_deck
   const name = req.body.name
   const id_customer = req.body.id_customer
