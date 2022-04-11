@@ -77,7 +77,7 @@ app.get('/api/Deck/:id', function(req, res) {
   try {
     sequelize.authenticate();
     console.log('Connecté à la base de données MySQL!');
-    sequelize.query("SELECT * FROM `deck`").then(([results, metadata]) => {
+    sequelize.query("SELECT * FROM `deck` WHERE `id_deck`=`"+id+"`").then(([results, metadata]) => {
         console.log(results);
         res.send(results);
       })
