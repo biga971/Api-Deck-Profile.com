@@ -121,6 +121,40 @@ app.put('/api/Deck', function(req, res) {
   }
 }) 
 
+app.post('/api/auth', function(req, res) {   
+  const login = req.body.login
+  const mail = req.body.mail
+  const password = req.body.password
+
+  try {
+    sequelize.authenticate();
+    console.log('Connecté à la base de données MySQL!');
+    sequelize.query("INSERT INTO `customer`(`login`, `mail`, `password`) VALUES ('"+login+"','"+mail+"','"+password+"')").then(([results, metadata]) => {
+        console.log(results);
+        res.send(results);
+      })
+  } catch (error) {
+    console.error('Impossible de se connecter, erreur suivante :', error);
+  }
+})
+
+app.post('/api/auth/google', function(req, res) {   
+  const id_google = req.body.id_google
+  const login = req.body.login
+  const mail = req.body.mail
+  const password = req.body.password
+
+  try {
+    sequelize.authenticate();
+    console.log('Connecté à la base de données MySQL!');
+    sequelize.query("INSERT INTO `customer`( `id_google`, `login`, `mail`, `password`, `status`) VALUES ('"+id_google+"','"+login+"','"+mail+"','"+password+"')").then(([results, metadata]) => {
+        console.log(results);
+        res.send(results);
+      })
+  } catch (error) {
+    console.error('Impossible de se connecter, erreur suivante :', error);
+  }
+})
 /*app.use(favicon(path.join(__dirname, "../favicon.ico")));
  app.use(express.static(path.join(__dirname,'../build')))
 app.all('/*', (req, res) => {
