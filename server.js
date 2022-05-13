@@ -155,6 +155,21 @@ app.post('/api/auth/google', function(req, res) {
     console.error('Impossible de se connecter, erreur suivante :', error);
   }
 })
+
+app.get('/api/auth/google', function(req, res) {   
+  const id_google = req.body.id_google
+  
+  try {
+    sequelize.authenticate();
+    console.log('Connecté à la base de données MySQL!');
+    sequelize.query("SELECT * FROM `customer` WHERE `id_google`= '"+id_google+"'").then(([results, metadata]) => {
+        console.log(results);
+        res.send(results);
+      })
+  } catch (error) {
+    console.error('Impossible de se connecter, erreur suivante :', error);
+  }
+})
 /*app.use(favicon(path.join(__dirname, "../favicon.ico")));
  app.use(express.static(path.join(__dirname,'../build')))
 app.all('/*', (req, res) => {
