@@ -138,6 +138,20 @@ app.post('/api/auth', function(req, res) {
   }
 })
 
+app.get('/api/auth', function(req, res) {   
+
+  try {
+    sequelize.authenticate();
+    console.log('Connecté à la base de données MySQL!');
+    sequelize.query("SELECT * FROM `customer` WHERE 1").then(([results, metadata]) => {
+        console.log(results);
+        res.send(results);
+      })
+  } catch (error) {
+    console.error('Impossible de se connecter, erreur suivante :', error);
+  }
+})
+
 app.post('/api/auth/google', function(req, res) {   
   const id_google = req.body.id_google
   const login = req.body.login
